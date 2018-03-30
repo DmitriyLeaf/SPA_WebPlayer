@@ -60,5 +60,6 @@ def init_model(engine):
 # Import your model modules here.
 from webplayer.model.auth import User, Group, Permission
 from webplayer.model.song import Song
+from webplayer.model.relation import Relation
 
-__all__ = ('User', 'Group', 'Permission', 'Song')
+__all__ = ('User', 'Group', 'Permission', 'Song', 'Relation')
