@@ -10,9 +10,8 @@ from webplayer.lib.base import BaseController
 
 
 class SongController(BaseController):
-    # Uncomment this line if your controller requires an authenticated user
-    # allow_only = predicates.not_anonymous()
+    allow_only = predicates.not_anonymous()
     
-    @expose('webplayer.templates.song')
+    @expose('webplayer.templates.sound')
     def index(self, **kw):
-        return dict(page='song-index')
+        return dict(page='sound-index')

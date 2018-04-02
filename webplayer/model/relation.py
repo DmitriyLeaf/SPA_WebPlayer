@@ -11,9 +11,9 @@ from webplayer.model import DeclarativeBase, metadata, DBSession
 class Relation(DeclarativeBase):
     __tablename__ = 'relations'
 
-    left_song_id = Column(Integer, primary_key=True)
+    left_sound_id = Column(Integer, primary_key=True)
     weight = Column(Integer, nullable=False)
-    right_song_id = Column(Integer, primary_key=True)
+    right_sound_id = Column(Integer, primary_key=True)
 
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
     user = relationship('User', uselist=False,
@@ -22,16 +22,16 @@ class Relation(DeclarativeBase):
 
     def __repr__(self):
         return'<Relation: left=%s, weight=%s, right=%s>' % (
-            repr(self.left_song_id),
+            repr(self.left_sound_id),
             repr(self.weight),
-            repr(self.right_song_id))
+            repr(self.right_sound_id))
 
     @classmethod
     def get_by_left(cls, id):
-        return DBSession.query(cls).filter_by(left_song_id=id).first()
+        return DBSession.query(cls).filter_by(left_sound_id=id).first()
 
     @classmethod
     def get_by_right(cls, id):
-        return DBSession.query(cls).filter_by(right_song_id=id).first()
+        return DBSession.query(cls).filter_by(right_sound_id=id).first()
 
 __all__ = ['Relation']

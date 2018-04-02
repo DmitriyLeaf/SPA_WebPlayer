@@ -8,10 +8,10 @@ from sqlalchemy.orm import relationship, backref
 from webplayer.model import DeclarativeBase, metadata, DBSession
 
 
-class Song(DeclarativeBase):
-    __tablename__ = 'songs'
+class Sound(DeclarativeBase):
+    __tablename__ = 'sounds'
 
-    song_id = Column(Integer, primary_key=True)
+    sound_id = Column(Integer, primary_key=True)
     data = Column(Unicode(255), nullable=False)
 
 
@@ -21,12 +21,12 @@ class Song(DeclarativeBase):
                                         cascade='all, delete-orphan'))
 
     def __repr__(self):
-    	return '<Song: name=%s, data=%s>' % (
-    		repr(self.song_id),
+    	return '<Sound: name=%s, data=%s>' % (
+    		repr(self.sound_id),
     		repr(self.data))
 
     @classmethod
-    def get(cls, song_id):
-    	return DBSession.query(cls).filter_by(song_id=song_id).first()
+    def get(cls, id):
+    	return DBSession.query(cls).filter_by(sound_id=id).first()
 
-__all__ = ['Song']
+__all__ = ['Sound']
