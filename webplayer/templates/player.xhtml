@@ -8,15 +8,26 @@
         <div class="col-md-12">
           <h2>Player</h2>
           <p>
-            Template page for Player
+            Simple HTML5 Player
           </p>
         </div>
-        <!--div>
-          <audio controls loop preload="auto">
-            <source src="sound.data" type="">
+        
+        <div>
+          <audio id="musik" preload="True">
+            <source src="8th_loveshit.mp3" />
             Error!
           </audio>
-        </div-->
+          <div id="audioplayer">
+            <button id="previous"></button>
+            <button id="pButton" class="play"></button>
+            <button id="next"></button>
+            <button id="stop"></button>
+            <div id="timeline">
+              <div id="playhead"></div>
+            </div>
+          </div>
+        </div> <!-- Player -->
+
       </div>
     </body>
 </html>

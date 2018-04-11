@@ -7,6 +7,7 @@ from tg import predicates
 
 from webplayer.lib.base import BaseController
 from webplayer.model import DBSession
+from webplayer.model.sound import Sound
 
 __all__ = ['PlayerController']
 
@@ -18,4 +19,6 @@ class PlayerController(BaseController):
 
 	@expose('webplayer.templates.player')
 	def index(self):
-		return dict(page='player')
+		sound = DBSession.query(Sound).get(1)
+		return dict(page='player',
+			sound=sound)
