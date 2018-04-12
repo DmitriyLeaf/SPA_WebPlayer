@@ -1,6 +1,7 @@
 <html py:extends="master.xhtml" py:strip="True">
     <head py:block="head" py:strip="True">
         <title py:block="master_title">Player</title>
+        <link rel="stylesheet" type="text/css" href="player_css" />
     </head>
 
     <body py:block="body" py:strip="True">
@@ -19,9 +20,9 @@
           </audio>
           <div id="audioplayer">
             <button id="previous"></button>
-            <button id="pButton" class="play"></button>
+            <button id="pButton" class="play">${h.icon('play')}</button>
             <button id="next"></button>
-            <button id="stop"></button>
+            <button id="stop">${h.icon('stop')}</button>
             <div id="timeline">
               <div id="playhead"></div>
             </div>
