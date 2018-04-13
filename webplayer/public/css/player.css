@@ -1,22 +1,13 @@
-#audioplayer{
+#player{
     width: 480px;
-    height: 60px;
-    margin: 50px auto auto auto;
     border: solid;
-}
-
-.play{
-	background: url('../img/play.png') no-repeat;
-}
-
-.pause{
-	background: url('../img/pause.png') no-repeat;
+    position: inherit;
 }
 
 #timeline{
 	width: 400px;
 	height: 20px;
-	background: grey;
+	background: silver;
 	margin-top: 20px;
 	float: left;
 	border-radius: 15px;

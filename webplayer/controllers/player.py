@@ -18,9 +18,7 @@ class PlayerController(BaseController):
 		tmpl_context.project_name = "SpacePlayer"
 
 	@expose('webplayer.templates.player')
-	@expose('webplayer.templates.player.css')
 	def index(self):
 		sound = DBSession.query(Sound).get(1)
 		return dict(page='player',
-			player_css='player.css',
 			sound=sound)

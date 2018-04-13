@@ -1,7 +1,7 @@
 <html py:extends="master.xhtml" py:strip="True">
     <head py:block="head" py:strip="True">
         <title py:block="master_title">Player</title>
-        <link rel="stylesheet" type="text/css" href="player_css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/player.css')}" />
     </head>
 
     <body py:block="body" py:strip="True">
@@ -13,16 +13,18 @@
           </p>
         </div>
         
-        <div>
+        <div id="player">
+          <h4>Sound Name</h4>
+          <h5>${sound.data}</h5>
           <audio id="musik" preload="True">
             <source src="8th_loveshit.mp3" />
             Error!
           </audio>
-          <div id="audioplayer">
-            <button id="previous"></button>
-            <button id="pButton" class="play">${h.icon('play')}</button>
-            <button id="next"></button>
-            <button id="stop">${h.icon('stop')}</button>
+          <div>
+            <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
+            <button id="pButton" class="btn btn-success">${h.icon('play')}</button>
+            <button id="next" class="btn btn-secondary">${h.icon('forward')}</button>
+            <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
             <div id="timeline">
               <div id="playhead"></div>
             </div>
