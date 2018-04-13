@@ -1,22 +1,36 @@
 #player{
-    width: 480px;
     border: solid;
-    position: inherit;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    align-items: center;
+    display: inline-block;
+    background: #eee;
+    /*vertical-align: top;
+  	justify-content: center;
+  	align-items: center;*/
 }
 
 #timeline{
-	width: 400px;
-	height: 20px;
+	width: 600px;
+	height: 10px;
 	background: silver;
-	margin-top: 20px;
-	float: left;
+	margin: 20px;
 	border-radius: 15px;
 }
 
 #playhead{
-	width: 18px;
-	height: 18px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
-	margin-top: 1px;
 	background: black;
+}
+
+#plButtons, #info{
+	margin-left: 20px;
+}
+
+#plButtons{
+	margin-top: 40px;
 }

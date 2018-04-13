@@ -12,25 +12,29 @@
             Simple HTML5 Player
           </p>
         </div>
-        
+      </div>
+
+      <div class="row">
         <div id="player">
-          <h4>Sound Name</h4>
-          <h5>${sound.data}</h5>
           <audio id="musik" preload="True">
             <source src="8th_loveshit.mp3" />
             Error!
           </audio>
-          <div>
+          <div id="info">
+            <h4>Sound Name</h4>
+            <h5>Info about: ${sound.data}</h5>
+          </div>
+          <div id="plButtons">
             <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
             <button id="pButton" class="btn btn-success">${h.icon('play')}</button>
             <button id="next" class="btn btn-secondary">${h.icon('forward')}</button>
             <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
-            <div id="timeline">
-              <div id="playhead"></div>
-            </div>
           </div>
-        </div> <!-- Player -->
+          <div id="timeline">
+            <div id="playhead"></div>
+          </div>
+        </div> 
+      </div> <!-- Player -->
 
-      </div>
     </body>
 </html>
