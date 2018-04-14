@@ -20,5 +20,15 @@ class PlayerController(BaseController):
 	@expose('webplayer.templates.player')
 	def index(self):
 		sound = DBSession.query(Sound).get(1)
+		icon = 'play'
 		return dict(page='player',
-			sound=sound)
+			sound=sound,
+			icon=icon)
+
+	@expose()
+	def play_pause_button(self, icon):
+		if icon == 'play':
+			icon = 'pause'
+		else:
+			icon = 'play'
+		return dict(icon=icon)
