@@ -12,5 +12,28 @@
           </p>
         </div>
       </div>
+
+      <div class="row">
+        <form method="POST" action="sound/gener_test_sounds">
+          <p><b>Enter quantity</b></p>
+          <input type="text" name="quantity" />
+          <input type="hidden" name="quantity" />
+          <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Generator</button>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div py:content="quantity"></div>
+          <p><b>List:</b></p>
+          <ul>
+            <li py:for="sound in sounds"></li>
+            <div py:content="sound.sound_id"></div>
+            <div py:content="sound.sound_name"></div>
+            <div py:content="sound.data"></div>
+            <hr />
+          </ul>
+        </div>
+      </div>
     </body>
 </html>

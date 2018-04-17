@@ -11,6 +11,7 @@ from webplayer.model.sound import Sound
 
 __all__ = ['SoundController']
 
+
 class SoundController(BaseController):
     allow_only = predicates.not_anonymous()
 
@@ -19,6 +20,12 @@ class SoundController(BaseController):
     
     @expose('webplayer.templates.sound')
     def index(self):
-    	#sound_test = DBSession.query(Sound).get(1)
-        return dict(page='sound')
-        	#sound=sound_test)
+    	sounds = DBSession.query(Sound).all()
+        return dict(page='sound',
+        	sounds=sounds)
+
+    @expose('json')
+    def gener_test_sounds(self, quantity=1):
+    	DBSession.bulk_insert_mappings(Sound, [dict(sound_name='Test Song #%s' % i, data='Test Data #%s' % i) for i in range(int(quantity))])
+    	redirect('/sound')
+

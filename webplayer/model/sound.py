@@ -12,6 +12,7 @@ class Sound(DeclarativeBase):
     __tablename__ = 'sounds'
 
     sound_id = Column(Integer, primary_key=True)
+    sound_name = Column(Unicode(64), nullable=False)
     data = Column(Unicode(255), nullable=False)
 
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
