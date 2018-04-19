@@ -25,7 +25,11 @@ class SoundController(BaseController):
         	sounds=sounds)
 
     @expose('json')
-    def gener_test_sounds(self, quantity=1):
-    	DBSession.bulk_insert_mappings(Sound, [dict(sound_name='Test Song #%s' % i, data='Test Data #%s' % i) for i in range(int(quantity))])
+    def gener_test_sounds(self, quantity):
+    	Sound.generation_test_data(int(quantity))
     	redirect('/sound')
 
+    @expose('json')
+    def clear_data(self):
+    	Sound.clear_data()
+    	redirect('/sound')
