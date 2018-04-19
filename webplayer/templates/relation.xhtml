@@ -12,5 +12,33 @@
           </p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form method="POST" action="relation/gener_new_relation">
+            <p>
+              <b>Generate new relations: </b>
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Generate</button>
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-12">
+          <p><b>List:</b></p>
+          <ul>
+            <li py:for="relation in relations">
+              <div py:content="relation.left_sound_id"></div>
+              <div py:content="relation.weight"></div>
+              <div py:content="relation.right_sound_id"></div>
+              <div py:content="relation.user"></div>
+              <hr />
+            </li>
+          </ul>
+        </div>
+      </div> <!--list of data-->
     </body>
 </html>

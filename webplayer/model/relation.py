@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship, backref
 
 from webplayer.model import DeclarativeBase, metadata, DBSession
 
+import random
 
 class Relation(DeclarativeBase):
     __tablename__ = 'relations'
@@ -33,5 +34,13 @@ class Relation(DeclarativeBase):
     @classmethod
     def get_by_right(cls, id):
         return DBSession.query(cls).filter_by(right_sound_id=id).first()
+
+    @classmethod
+    def generation_new_relation(cls, sound_quantity):
+        DBSession.query(cls).delete()
+        
+        for i in xrange(1, sound_quantity+1):
+            for j in xrange(1, sound_quantity+1):
+                DBSession.add(Relation(left_sound_id=i, weight=random.randint(0, 100), right_sound_id=j))
 
 __all__ = ['Relation']
