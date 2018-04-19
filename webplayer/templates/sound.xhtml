@@ -17,7 +17,6 @@
         <form method="POST" action="sound/gener_test_sounds" style="display: inline;">
           <p><b>Enter quantity</b></p>
           <input type="text" name="quantity" id="quantity"/>
-          <!--input type="hidden" name="quantity" /-->
           <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Generate</button>
         </form>
         <form method="POST" action="sound/clear_data" style="display: inline;">
@@ -27,7 +26,6 @@
 
       <div class="row">
         <div class="col-md-12">
-          <!--div py:content="quantity"></div-->
           <p><b>List:</b></p>
           <ul>
             <li py:for="sound in sounds">
@@ -38,6 +36,6 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> <!--list of data-->
     </body>
 </html>

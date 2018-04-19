@@ -32,11 +32,11 @@ class Sound(DeclarativeBase):
     def generation_test_data(cls, quantity):
         try:
             last_sound = DBSession.query(cls).order_by(cls.sound_id.desc()).first()
-            last = last_sound.sound_id
+            last = last_sound.sound_id + 1
         except:
             last = 1
 
-        for i in xrange(last, last+quantity+1):
+        for i in xrange(last, last+quantity):
             DBSession.add(Sound(sound_name='Test Song #%s' % i, data='Test Data #%s' % i, user_id=1))
 
     @classmethod
