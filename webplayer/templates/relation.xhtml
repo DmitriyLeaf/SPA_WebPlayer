@@ -40,12 +40,12 @@
             <caption>Relation table</caption>
             <tr bgcolor="silver">
               <td>#</td>
-              <td py:for="i in range(0, len(relations_table))">
+              <td py:for="i in range(1, len(relations_table)+1)">
                 <div py:content="i"></div>
               </td>
             </tr>
             <tr py:for="row in relations_table">
-              <td py:content="relations_table.index(row)" bgcolor="silver"></td>
+              <td py:content="relations_table.index(row)+1" bgcolor="silver"></td>
               <td py:for="value in row">
                 <div py:content="value"></div>
               </td>

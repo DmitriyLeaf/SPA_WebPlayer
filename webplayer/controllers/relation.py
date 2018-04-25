@@ -22,21 +22,15 @@ class RelationController(BaseController):
         sounds = DBSession.query(Sound).all()
         
         relations_table = [[0 for i in range(0, len(sounds))] for j in range(0, len(sounds))]
-        for i in relations:
-            relations_table[i.left_sound_id-1][i.right_sound_id-1] = i.weight
+        try:
+            for i in relations:
+                relations_table[i.left_sound_id-1][i.right_sound_id-1] = i.weight
+        except:
+            print 1
         
-        html = '<table>'
-        for row in relations_table:
-            html += '<tr>'
-            for value in row:
-                html += '<td>{}</td>'.format(value)
-                html += '</tr>'
-                html += '</table>'
-
         return dict(page='relation',
         	relations=relations,
-            relations_table=relations_table,
-            html=html)
+            relations_table=relations_table)
 
     @expose('json')
     def gener_new_relation(self):
