@@ -25,9 +25,18 @@ class RelationController(BaseController):
         for i in relations:
             relations_table[i.left_sound_id-1][i.right_sound_id-1] = i.weight
         
+        html = '<table>'
+        for row in relations_table:
+            html += '<tr>'
+            for value in row:
+                html += '<td>{}</td>'.format(value)
+                html += '</tr>'
+                html += '</table>'
+
         return dict(page='relation',
         	relations=relations,
-            relations_table=relations_table)
+            relations_table=relations_table,
+            html=html)
 
     @expose('json')
     def gener_new_relation(self):
@@ -35,3 +44,10 @@ class RelationController(BaseController):
     	sound_quantity = len(sounds)
     	Relation.generation_new_relation(sound_quantity)
     	redirect('/relation')
+
+    @expose('json')
+    def gener_null_relation(self):
+        sounds = DBSession.query(Sound).all()
+        sound_quantity = len(sounds)
+        Relation.generation_null_relation(sound_quantity)
+        redirect('/relation')

@@ -13,6 +13,8 @@
         </div>
       </div>
 
+      <hr />
+
       <div class="row">
         <div class="col-md-12">
           <form method="POST" action="relation/gener_new_relation">
@@ -21,21 +23,35 @@
               <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Generate</button>
             </p>
           </form>
+          <form method="POST" action="relation/gener_null_relation">
+            <p>
+              <b>Generate empty relations: </b>
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Empty</button>
+            </p>
+          </form>
         </div>
       </div>
 
       <hr />
 
       <div class="row">
-        <div py:content="relations_table"></div>
-        <!--div class="col-md-12">
-          <table border="1">
+        <div class="col-md-12">
+          <table cellspacing="2" border="1" cellpadding="5">
             <caption>Relation table</caption>
-            <tr py:for="i in relations_table">
-              <th py:content="relation.left_sound_id"></th>
+            <tr bgcolor="silver">
+              <td>#</td>
+              <td py:for="i in range(0, len(relations_table))">
+                <div py:content="i"></div>
+              </td>
+            </tr>
+            <tr py:for="row in relations_table">
+              <td py:content="relations_table.index(row)" bgcolor="silver"></td>
+              <td py:for="value in row">
+                <div py:content="value"></div>
+              </td>
             </tr>
           </table>
-        </div-->
+        </div>
       </div>
 
       <hr />
