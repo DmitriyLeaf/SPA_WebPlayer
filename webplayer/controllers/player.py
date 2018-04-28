@@ -31,4 +31,5 @@ class PlayerController(BaseController):
 			icon = 'pause'
 		else:
 			icon = 'play'
-		return dict(icon=icon)
+		return dict(redirect('/player'),
+			icon=icon)
