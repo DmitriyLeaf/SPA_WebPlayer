@@ -28,6 +28,10 @@ class Sound(DeclarativeBase):
     def get(cls, id):
     	return DBSession.query(cls).filter_by(sound_id=id).first()
 
+    #@classmethod
+    #def get_url(cls, id):
+        #return 'music/' + DBSession.query(cls).filter_by(sound_id=id).first() + '.mp3'
+
     @classmethod
     def generation_test_data(cls, quantity):
         try:

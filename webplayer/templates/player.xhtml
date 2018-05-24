@@ -13,28 +13,41 @@
           </p>
         </div>
       </div>
-
+      <audio preload="auto">
+        <source src="${'/music/' + str(sound.sound_id) + '.mp3'}" />
+        Error!
+      </audio>
       <div class="row">
         <div id="player">
-          <audio id="musik" preload="True">
-            <source src="8th_loveshit.mp3" />
-            Error!
-          </audio>
           <div id="info">
             <h4>${sound.sound_name}</h4>
             <h5>Info about: ${sound.data}</h5>
+            <h5>Url: ${'/music/' + str(sound.sound_id) + '.mp3'}</h5>
           </div>
-          <div id="plButtons">
-            <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
-            <button id="pButton" class="btn btn-success" onclick="play_pause_button(icon)">${h.icon(icon)}</button> 
-            <button id="next" class="btn btn-secondary">${h.icon('forward')}</button>
+          <div id="audioplayer">
+            <form id="previousForm" method="post" action="player/previous_button">
+              <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
+            </form>
+            <button id="pButton" class="btn btn-success">${h.icon(icon)}</button> 
+            <form id="nextForm" method="post" action="player/next_button">
+              <button id="next" class="btn btn-secondary" type="submit">${h.icon('forward')}</button>
+            </form>
             <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
-          </div>
-          <div id="timeline">
-            <div id="playhead"></div>
+            <div id="timeline">
+              <div id="playhead"></div>
+            </div>
           </div>
         </div> 
       </div> <!-- Player -->
+
+      <br />
+      <p>Test player</p>
+      <audio controls="controls" >
+        <source src="${'/music/' + str(sound.sound_id) + '.mp3'}" />
+        Error!
+      </audio>
+
+      <script src="${tg.url('/javascript/player.js')}" type="text/javascript"></script>
 
     </body>
 </html>

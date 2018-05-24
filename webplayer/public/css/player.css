@@ -27,10 +27,14 @@
 	background: black;
 }
 
-#plButtons, #info{
+#audioplayer, #info{
 	margin-left: 20px;
 }
 
-#plButtons{
-	margin-top: 40px;
+#audioplayer{
+	margin-top: 25px;
+}
+
+#previousForm, #pButton, #nextForm, #stop{
+	display: inline-block;
 }

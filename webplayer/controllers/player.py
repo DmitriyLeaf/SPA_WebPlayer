@@ -20,16 +20,19 @@ class PlayerController(BaseController):
 	@expose('webplayer.templates.player')
 	def index(self):
 		sound = DBSession.query(Sound).get(1)
+		sound_url = '/music/' + str(sound.sound_id) + '.mp3'
 		icon = 'play'
 		return dict(page='player',
 			sound=sound,
+			sound_url=sound_url,
 			icon=icon)
 
 	@expose()
-	def play_pause_button(self, icon):
-		if icon == 'play':
-			icon = 'pause'
-		else:
-			icon = 'play'
-		return dict(redirect('/player'),
-			icon=icon)
+	def next_button(self):
+		
+		redirect('/player')
+
+	@expose()
+	def previous_button(self):
+		
+		redirect('/player')

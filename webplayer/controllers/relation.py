@@ -21,7 +21,7 @@ class RelationController(BaseController):
         relations = DBSession.query(Relation).all()
         sounds = DBSession.query(Sound).all()
         
-        relations_table = [[0 for i in range(0, len(sounds))] for j in range(0, len(sounds))]
+            relations_table = [[0 for i in range(0, len(sounds))] for j in range(0, len(sounds))]
         try:
             for i in relations:
                 relations_table[i.left_sound_id-1][i.right_sound_id-1] = i.weight
