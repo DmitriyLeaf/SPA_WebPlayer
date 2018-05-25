@@ -22,6 +22,13 @@
         <form method="POST" action="sound/clear_data" style="display: inline;">
           <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">DELETE ALL</button>
         </form>
+        <br />
+        <br />
+        <form method="POST" action="sound/upload_files">
+          <p><b>Enter directory</b></p>
+          <input type="text" name="directory" id="directory"/>
+          <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Upload</button>
+        </form>
       </div>
 
       <div class="row">
@@ -29,9 +36,13 @@
           <p><b>List:</b></p>
           <ul>
             <li py:for="sound in sounds">
-              <div py:content="sound.sound_id"></div>
-              <div py:content="sound.sound_name"></div>
-              <div py:content="sound.data"></div>
+              <b>Id:</b><div py:content="sound.sound_id" style="display: inline;"></div><br/>
+              <b>Name:</b><div py:content="sound.sound_name" style="display: inline;"></div><br/>
+              <b>Date:</b><div py:content="sound.date" style="display: inline;"></div><br/>
+              <b>Album:</b><div py:content="sound.album" style="display: inline;"></div><br/>
+              <b>Genre:</b><div py:content="sound.genre" style="display: inline;"></div><br/>
+              <b>Artist:</b><div py:content="sound.artist" style="display: inline;"></div><br/>
+              <b>Url:</b><div py:content="sound.data" style="display: inline;"></div>
               <hr />
             </li>
           </ul>

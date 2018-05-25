@@ -19,9 +19,13 @@ class PlayerController(BaseController):
 
 	@expose('webplayer.templates.player')
 	def index(self):
-		sound = DBSession.query(Sound).get(1)
-		sound_url = '/music/' + str(sound.sound_id) + '.mp3'
-		icon = 'play'
+		try:
+			sound = DBSession.query(Sound).get(1)
+			sound_url = '/music/' + str(sound.sound_id) + '.mp3'
+			icon = 'play'
+		except:
+			redirect('/sound')
+		
 		return dict(page='player',
 			sound=sound,
 			sound_url=sound_url,

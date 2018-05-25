@@ -33,3 +33,8 @@ class SoundController(BaseController):
     def clear_data(self):
     	Sound.clear_data()
     	redirect('/sound')
+
+    @expose('json')
+    def upload_files(self, directory='/music'):
+        Sound.upload_files(directory)
+        redirect('/sound')    

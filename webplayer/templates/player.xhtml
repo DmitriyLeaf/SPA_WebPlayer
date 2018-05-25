@@ -14,15 +14,15 @@
         </div>
       </div>
       <audio preload="auto">
-        <source src="${'/music/' + str(sound.sound_id) + '.mp3'}" />
+        <source src="${'/music/' + str(sound.data)}" />
         Error!
       </audio>
       <div class="row">
         <div id="player">
           <div id="info">
             <h4>${sound.sound_name}</h4>
-            <h5>Info about: ${sound.data}</h5>
-            <h5>Url: ${'/music/' + str(sound.sound_id) + '.mp3'}</h5>
+            <h5>Artist: ${sound.artist}</h5>
+            <h5>Url: ${'/music/' + str(sound.data)}</h5>
           </div>
           <div id="audioplayer">
             <form id="previousForm" method="post" action="player/previous_button">
@@ -43,7 +43,7 @@
       <br />
       <p>Test player</p>
       <audio controls="controls" >
-        <source src="${'/music/' + str(sound.sound_id) + '.mp3'}" />
+        <source src="${'/music/' + str(sound.data)}" />
         Error!
       </audio>
 
