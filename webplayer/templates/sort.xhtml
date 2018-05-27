@@ -1,0 +1,35 @@
+<html py:extends="master.xhtml" py:strip="True">
+    <head py:block="head" py:strip="True">
+        <title py:block="master_title">Sort</title>
+    </head>
+
+    <body py:block="body" py:strip="True">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Select a category:</h2>
+          <!--p>Select a category</p-->
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-1 hidden-xs hidden-sm">
+          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Date</em></a>
+          <br/><br/>
+          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Album</em></a>
+          <br/><br/>
+          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Genre</em></a>
+          <br/><br/>
+          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Artist</em></a>
+        </div>
+        <div class="col-md-2 hidden-xs hidden-sm">
+          <p></p>
+          <br/>
+          <p></p>
+          <br/>
+          <p></p>
+          <br/>
+          <p></p>
+        </div>
+      </div>
+    </body>
+</html>

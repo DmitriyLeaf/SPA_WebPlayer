@@ -15,7 +15,7 @@ class Sound(DeclarativeBase):
     __tablename__ = 'sounds'
 
     sound_id = Column(Integer, primary_key=True)
-    sound_name = Column(String(32), nullable=True) #TIT1-3(2)
+    sound_name = Column(String(32), nullable=True) #TIT2 (1-3)
     date = Column(String(32), nullable=True) #TDRC
     album = Column(String(32), nullable=True) #TALB
     genre = Column(String(32), nullable=True) #TCON
@@ -57,7 +57,7 @@ class Sound(DeclarativeBase):
 
     @classmethod
     def upload_files(cls, directory):
-        directory = 'C:\\Users\\Leafmen\\Desktop\\python\\diploma\\webplayer\\webplayer\\public\\music'
+        directory = 'C:\\Users\\Leafmen\\Desktop\\python\\diploma\\webplayer\\webplayer\\public\\music' + directory
         files = listdir(directory)
 
         for file in files:

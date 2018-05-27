@@ -35,6 +35,6 @@ class SoundController(BaseController):
     	redirect('/sound')
 
     @expose('json')
-    def upload_files(self, directory='/music'):
+    def upload_files(self, directory):
         Sound.upload_files(directory)
         redirect('/sound')    

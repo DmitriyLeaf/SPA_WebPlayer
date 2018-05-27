@@ -15,21 +15,23 @@
 
       <div class="row">
         <form method="POST" action="sound/gener_test_sounds" style="display: inline;">
-          <p><b>Enter quantity</b></p>
-          <input type="text" name="quantity" id="quantity"/>
+          <b>Enter quantity</b><br/>
+          <input type="text" name="quantity" id="quantity" placeholder="Exemple: 20" />
           <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Generate</button>
         </form>
         <form method="POST" action="sound/clear_data" style="display: inline;">
           <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">DELETE ALL</button>
         </form>
-        <br />
-        <br />
+        <br/>
+        <br/>
         <form method="POST" action="sound/upload_files">
-          <p><b>Enter directory</b></p>
-          <input type="text" name="directory" id="directory"/>
+          <b>Enter directory:</b><br/>
+          <input type="text" name="directory" id="directory" placeholder="//music//your_folder" />
           <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Upload</button>
         </form>
       </div>
+
+      <br/><br/>
 
       <div class="row">
         <div class="col-md-12">
@@ -37,12 +39,12 @@
           <ul>
             <li py:for="sound in sounds">
               <b>Id:</b><div py:content="sound.sound_id" style="display: inline;"></div><br/>
-              <b>Name:</b><div py:content="sound.sound_name" style="display: inline;"></div><br/>
-              <b>Date:</b><div py:content="sound.date" style="display: inline;"></div><br/>
-              <b>Album:</b><div py:content="sound.album" style="display: inline;"></div><br/>
-              <b>Genre:</b><div py:content="sound.genre" style="display: inline;"></div><br/>
-              <b>Artist:</b><div py:content="sound.artist" style="display: inline;"></div><br/>
-              <b>Url:</b><div py:content="sound.data" style="display: inline;"></div>
+              <b>Name: </b><div py:content="sound.sound_name" style="display: inline;"></div><br/>
+              <b>Date: </b><div py:content="sound.date" style="display: inline;"></div><br/>
+              <b>Album: </b><div py:content="sound.album" style="display: inline;"></div><br/>
+              <b>Genre: </b><div py:content="sound.genre" style="display: inline;"></div><br/>
+              <b>Artist: </b><div py:content="sound.artist" style="display: inline;"></div><br/>
+              <b>Url: </b><div py:content="sound.data" style="display: inline;"></div>
               <hr />
             </li>
           </ul>

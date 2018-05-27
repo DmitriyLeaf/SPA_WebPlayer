@@ -18,9 +18,9 @@ class PlayerController(BaseController):
 		tmpl_context.project_name = "SpacePlayer"
 
 	@expose('webplayer.templates.player')
-	def index(self):
+	def index(self, id = 1):
 		try:
-			sound = DBSession.query(Sound).get(1)
+			sound = DBSession.query(Sound).get(id)
 			sound_url = '/music/' + str(sound.sound_id) + '.mp3'
 			icon = 'play'
 		except:
