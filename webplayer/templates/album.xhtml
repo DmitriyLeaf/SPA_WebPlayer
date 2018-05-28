@@ -1,16 +1,46 @@
 <html py:extends="master.xhtml" py:strip="True">
     <head py:block="head" py:strip="True">
         <title py:block="master_title">Album</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/card.css')}" />
     </head>
 
     <body py:block="body" py:strip="True">
       <div class="row">
         <div class="col-md-12">
-          <h2>Album</h2>
-          <p>
-            Template page for Album
-          </p>
+          <h2>Select a album</h2>
         </div>
       </div>
+
+      <div class="row">
+        <div id="accordion" py:for="album in keys">
+          <div class="card">
+            <div class="card-header" id="heading${keys.index(album)}">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse${keys.index(album)}" aria-expanded="true" aria-controls="collapse${keys.index(album)}">
+                  ${album}
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapse${keys.index(album)}" class="collapse" aria-labelledby="heading${keys.index(album)}" data-parent="#accordion">
+              <div class="card-body">
+                <div py:for="sound in sorted_dict[album]">
+                  <div>
+                    <p>${sound[0]}</p>
+                    <!--${'/music/' + str(sound[1])}-->
+                    <br/>
+                    <audio controls="controls" preload="none">
+                      <source src="${tg.url('/music/' + str(sound[1]))}" />
+                      Error!
+                    </audio>
+                  </div>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </body>
 </html>

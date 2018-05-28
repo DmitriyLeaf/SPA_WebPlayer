@@ -12,24 +12,13 @@
       </div>
       <br/>
       <div class="row">
-        <div class="col-md-1 hidden-xs hidden-sm">
-          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Date</em></a>
-          <br/><br/>
-          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Album</em></a>
-          <br/><br/>
-          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Genre</em></a>
-          <br/><br/>
-          <a class="btn btn-info btn-sm active" href="https://github.com/DmitriyLeaf/SPA_WebPlayer">${h.icon('sort')} <em>Sort by Artist</em></a>
-        </div>
-        <div class="col-md-2 hidden-xs hidden-sm">
-          <p></p>
-          <br/>
-          <p></p>
-          <br/>
-          <p></p>
-          <br/>
-          <p></p>
-        </div>
+        <a class="btn btn-info btn-sm active" href="${tg.url('date')}">${h.icon('sort')} <em>Sort by Date</em></a>
+        <br/><br/>
+        <a class="btn btn-info btn-sm active" href="${tg.url('album')}">${h.icon('sort')} <em>Sort by Album</em></a>
+        <br/><br/>
+        <a class="btn btn-info btn-sm active" href="${tg.url('genre')}">${h.icon('sort')} <em>Sort by Genre</em></a>
+        <br/><br/>
+        <a class="btn btn-info btn-sm active" href="${tg.url('artist')}">${h.icon('sort')} <em>Sort by Artist</em></a>
       </div>
     </body>
 </html>

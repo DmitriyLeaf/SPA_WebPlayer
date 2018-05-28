@@ -89,7 +89,7 @@ class Sound(DeclarativeBase):
             except:
                 sound['artist'] = 'Null'
             
-            sound['data'] = file
+            sound['data'] = str(file).encode('utf8')
 
             DBSession.add(Sound(
                 sound_name=sound['name'],
@@ -100,6 +100,56 @@ class Sound(DeclarativeBase):
                 data = sound['data'], 
                 user_id=1))
 
+    @classmethod
+    def sort_by_date(cls):
+        sounds = DBSession.query(Sound).all()
+        sorted_dict = {}
+        
+        for sound in sounds:
+            try:
+                sorted_dict[sound.date].append([sound.sound_name, sound.data])
+            except:
+                sorted_dict[sound.date] = [[sound.sound_name, sound.data]]
 
+        return sorted_dict
+
+    @classmethod
+    def sort_by_artist(cls):
+        sounds = DBSession.query(Sound).all()
+        sorted_dict = {}
+        
+        for sound in sounds:
+            try:
+                sorted_dict[sound.artist].append([sound.sound_name, sound.data])
+            except:
+                sorted_dict[sound.artist] = [[sound.sound_name, sound.data]]
+
+        return sorted_dict
+
+    @classmethod
+    def sort_by_genre(cls):
+        sounds = DBSession.query(Sound).all()
+        sorted_dict = {}
+        
+        for sound in sounds:
+            try:
+                sorted_dict[sound.genre].append([sound.sound_name, sound.data])
+            except:
+                sorted_dict[sound.genre] = [[sound.sound_name, sound.data]]
+
+        return sorted_dict
+
+    @classmethod
+    def sort_by_album(cls):
+        sounds = DBSession.query(Sound).all()
+        sorted_dict = {}
+        
+        for sound in sounds:
+            try:
+                sorted_dict[sound.album].append([sound.sound_name, sound.data])
+            except:
+                sorted_dict[sound.album] = [[sound.sound_name, sound.data]]
+
+        return sorted_dict
 
 __all__ = ['Sound']
