@@ -25,18 +25,20 @@ class PlayerController(BaseController):
 			icon = 'play'
 		except:
 			redirect('/sound')
-		
+
 		return dict(page='player',
 			sound=sound,
 			sound_url=sound_url,
 			icon=icon)
 
 	@expose()
-	def next_button(self):
+	def next_button(self, current_time_next):
 		
-		redirect('/player')
+		redirect('/player', dict(
+			id=2))
 
 	@expose()
-	def previous_button(self):
+	def previous_button(self, current_time_pre):
 		
-		redirect('/player')
+		redirect('/player' , dict(
+			id=1))

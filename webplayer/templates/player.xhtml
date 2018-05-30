@@ -26,12 +26,12 @@
           </div>
           <div id="audioplayer">
             <form id="previousForm" method="post" action="player/previous_button">
-              <input type="hidden" name="current_time" id="current_time"/>
+              <input type="hidden" name="current_time_pre" id="current_time_pre"/>
               <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
             </form>
             <button id="pButton" class="btn btn-success">${h.icon(icon)}</button> 
-            <form id="nextForm" method="post" action="player/ne+xt_button">
-              <input type="hidden" name="current_time" id="current_time"/>
+            <form id="nextForm" method="post" action="player/next_button">
+              <input type="hidden" name="current_time_next" id="current_time_next"/>
               <button id="next" class="btn btn-secondary" type="submit">${h.icon('forward')}</button>
             </form>
             <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
@@ -43,9 +43,15 @@
       </div> <!-- Player -->
 
       ${icon = <var id="icon"></var>}
-      ${h.icon(icon)}
-      <div id="icon"></div>
-      ${h.icon(<a id="current_time"></a>)}
+      ${h.icon(<var id="icon"></var>)}
+      <!--var id="icon"></var-->
+      <!--div id="icon"></div-->
+      <br/>
+      <var id="playPercent"></var>
+      <br/>
+      <var id="current"></var>
+      <br/>
+      <var id="duration"></var>
 
       <br />
       <!--p>Test player</p>
