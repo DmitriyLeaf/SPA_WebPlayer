@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship, backref
 
 from webplayer.model import DeclarativeBase, metadata, DBSession
 
-import random
+import random, math
 
 class Relation(DeclarativeBase):
     __tablename__ = 'relations'
@@ -49,6 +49,14 @@ class Relation(DeclarativeBase):
         
         for i in xrange(1, sound_quantity+1):
             for j in xrange(1, sound_quantity+1):
-                DBSession.add(Relation(left_sound_id=i, weight=0, right_sound_id=j))
+                DBSession.add(Relation(left_sound_id=i, weight=int(100-100/1.618), right_sound_id=j))
+
+    @classmethod
+    def increase_own_value(cls, sound_id):
+        current = DBSession.query(cls).filter_by(left_sound_id=sound_id, right_sound_id=sound_id).first()
+        rate = int((100 - current.weight) - (100 - current.weight) / 1.618)
+        DBSession.query(cls).\
+            filter_by(left_sound_id=sound_id, right_sound_id=sound_id).\
+            update({"weight": cls.weight + rate}, synchronize_session='fetch')
 
 __all__ = ['Relation']

@@ -13,37 +13,55 @@
           </p>
         </div>
       </div>
+
       <audio id="music" preload="none">
         <source src="${tg.url('/music/' + str(sound.data))}" />
         Error!
       </audio>
+
       <div class="row">
         <div id="player">
+
           <div id="info">
             <h4>${sound.sound_name}</h4>
             <h5>Artist: ${sound.artist}</h5>
             <h5>Url: ${'/music/' + str(sound.data)}</h5>
           </div>
+
           <div id="audioplayer">
             <form id="previousForm" method="post" action="player/previous_button">
               <input type="hidden" name="current_time_pre" id="current_time_pre"/>
+              <input type="hidden" name="current_id" value="${sound.sound_id}"/>
+              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
               <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
             </form>
-            <button id="pButton" class="btn btn-success">${h.icon(icon)}</button> 
+
+            <button id="pButton" class="btn btn-success">${h.icon('play')}</button> 
+            
             <form id="nextForm" method="post" action="player/next_button">
               <input type="hidden" name="current_time_next" id="current_time_next"/>
+              <input type="hidden" name="current_id" value="${sound.sound_id}"/>
+              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
               <button id="next" class="btn btn-secondary" type="submit">${h.icon('forward')}</button>
             </form>
-            <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
+            
+            <form id="stopForm" method="post" action="player/stop_button">
+              <input type="hidden" name="current_time_stop" id="current_time_stop"/>
+              <input type="hidden" name="current_id" value="${sound.sound_id}"/>
+              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
+              <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
+            </form>
+
             <div id="timeline">
               <div id="playhead"></div>
             </div>
+
           </div>
         </div> 
       </div> <!-- Player -->
 
-      ${icon = <var id="icon"></var>}
-      ${h.icon(<var id="icon"></var>)}
+      <!--${icon = <var id="icon"></var>}
+      ${h.icon(<input type="hidden" id="icon2"/>)}-->
       <!--var id="icon"></var-->
       <!--div id="icon"></div-->
       <br/>

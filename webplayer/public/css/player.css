@@ -35,6 +35,6 @@
 	margin-top: 25px;
 }
 
-#previousForm, #pButton, #nextForm, #stop{
+#previousForm, #pButton, #nextForm, #stopForm{
 	display: inline-block;
 }
