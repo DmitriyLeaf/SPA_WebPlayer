@@ -38,7 +38,6 @@ class Relation(DeclarativeBase):
     @classmethod
     def generation_new_relation(cls, sound_quantity):
         DBSession.query(cls).delete()
-        
         for i in xrange(1, sound_quantity+1):
             for j in xrange(1, sound_quantity+1):
                 DBSession.add(Relation(left_sound_id=i, weight=random.randint(0, 100), right_sound_id=j))
@@ -46,7 +45,6 @@ class Relation(DeclarativeBase):
     @classmethod
     def generation_null_relation(cls, sound_quantity):
         DBSession.query(cls).delete()
-        
         for i in xrange(1, sound_quantity+1):
             for j in xrange(1, sound_quantity+1):
                 DBSession.add(Relation(left_sound_id=i, weight=int(100-100/1.618), right_sound_id=j))
@@ -58,5 +56,50 @@ class Relation(DeclarativeBase):
         DBSession.query(cls).\
             filter_by(left_sound_id=sound_id, right_sound_id=sound_id).\
             update({"weight": cls.weight + rate}, synchronize_session='fetch')
+
+    @classmethod
+    def increase_relation(cls, previous_id, current_id):
+        current_rel = DBSession.query(cls).filter_by(left_sound_id=previous_id, right_sound_id=current_id).first()
+        rate = int((100 - current_rel.weight) - (100 - current_rel.weight) / 1.618)
+        DBSession.query(cls).\
+            filter(cls.left_sound_id==previous_id).\
+            filter(cls.right_sound_id==current_id).\
+            update({"weight": cls.weight + rate})
+
+    @classmethod
+    def reduce_own_value(cls, sound_id):
+        current = DBSession.query(cls).filter_by(left_sound_id=sound_id, right_sound_id=sound_id).first()
+        rate = int(current.weight - current.weight / 1.618)
+        DBSession.query(cls).\
+            filter_by(left_sound_id=sound_id, right_sound_id=sound_id).\
+            update({"weight": cls.weight - rate}, synchronize_session='fetch')
+
+    @classmethod
+    def reduce_relation(cls, previous_id, current_id):
+        current_rel = DBSession.query(cls).filter_by(left_sound_id=previous_id, right_sound_id=current_id).first()
+        rate = int(current_rel.weight - current_rel.weight / 1.618)
+        DBSession.query(cls).\
+            filter(cls.left_sound_id==previous_id).\
+            filter(cls.right_sound_id==current_id).\
+            update({"weight": cls.weight - rate}, synchronize_session='fetch')
+
+    @classmethod
+    def get_next_sound(cls, soung_id):
+        fibonacci = [1, 1, 2, 3, 5, 8]
+        
+        relations = DBSession.query(cls).\
+            filter(cls.left_sound_id==soung_id).\
+            filter(cls.left_sound_id!=cls.right_sound_id).\
+            all()
+
+        
+
+        return relations
+
+    @classmethod
+    def get_previous_sound(cls, soung_id):
+        fibonacci = [1, 1, 2, 3, 5, 8]
+
+        return 1
 
 __all__ = ['Relation']

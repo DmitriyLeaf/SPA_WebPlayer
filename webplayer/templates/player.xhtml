@@ -32,7 +32,7 @@
             <form id="previousForm" method="post" action="player/previous_button">
               <input type="hidden" name="current_time_pre" id="current_time_pre"/>
               <input type="hidden" name="current_id" value="${sound.sound_id}"/>
-              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
+              <input type="hidden" name="previous_id" value="${previous_id}"/>
               <button id="previous" class="btn btn-secondary">${h.icon('backward')}</button>
             </form>
 
@@ -41,14 +41,14 @@
             <form id="nextForm" method="post" action="player/next_button">
               <input type="hidden" name="current_time_next" id="current_time_next"/>
               <input type="hidden" name="current_id" value="${sound.sound_id}"/>
-              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
+              <input type="hidden" name="previous_id" value="${previous_id}"/>
               <button id="next" class="btn btn-secondary" type="submit">${h.icon('forward')}</button>
             </form>
             
             <form id="stopForm" method="post" action="player/stop_button">
               <input type="hidden" name="current_time_stop" id="current_time_stop"/>
               <input type="hidden" name="current_id" value="${sound.sound_id}"/>
-              <input type="hidden" name="previous_sound" value="${previous_sound}"/>
+              <input type="hidden" name="previous_id" value="${previous_id}"/>
               <button id="stop" class="btn btn-dark">${h.icon('stop')}</button>
             </form>
 
@@ -70,6 +70,7 @@
       <var id="current"></var>
       <br/>
       <var id="duration"></var>
+      <br/>
 
       <br />
       <!--p>Test player</p>

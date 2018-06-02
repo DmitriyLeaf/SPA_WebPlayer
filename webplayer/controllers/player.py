@@ -19,7 +19,7 @@ class PlayerController(BaseController):
 		tmpl_context.project_name = "SpacePlayer"
 
 	@expose('webplayer.templates.player')
-	def index(self, id = 3, previous_sound = 1):
+	def index(self, id = 2, previous_id = 1):
 		try:
 			sound = DBSession.query(Sound).get(id)
 			sound_url = '/music/' + str(sound.sound_id) + '.mp3'
@@ -29,22 +29,61 @@ class PlayerController(BaseController):
 		return dict(page='player',
 			sound=sound,
 			sound_url=sound_url,
-			previous_sound=previous_sound)
+			previous_id=previous_id)
 
 	@expose()
-	def next_button(self, current_time_next, current_id):
-		
+	def next_button(self, current_time_next, current_id, previous_id):
+		next_sound = current_id
+		try:
+			if int(current_time_next) < 38:
+				Relation.reduce_own_value(current_id)
+				Relation.reduce_relation(previous_id, current_id)
+				
+				next_sound = Relation.get_next_sound(previous_id)
+			elif int(current_time_next) >= 38 and int(current_time_next) <=61:
+
+				next_sound = Relation.get_next_sound(current_id)
+				previous_id = current_id
+			elif int(current_time_next) > 61:
+				Relation.increase_own_value(current_id)
+				Relation.increase_relation(previous_id, current_id)
+				
+				next_sound = Relation.get_next_sound(current_id)
+				previous_id = current_id
+		except:
+			pass
+
 		redirect('/player', dict(
-			id=2))
+			id=next_sound,
+			previous_id=previous_id))
 
 	@expose()
-	def previous_button(self, current_time_pre, current_id):
-		
-		redirect('/player' , dict(
-			id=1))
+	def previous_button(self, current_time_pre, current_id, previous_id):
+		next_sound = current_id
+		try:
+			if int(current_time_pre) < 38:
+				Relation.reduce_own_value(current_id)
+				Relation.reduce_relation(current_id, previous_id)
+				
+				next_sound = Relation.get_previous_sound(previous_id)
+			elif int(current_time_pre) >= 38 and int(current_time_pre) <=61:
+				next_sound = Relation.get_previous_sound(current_id)
+				previous_id = current_id
+			elif int(current_time_pre) > 61:
+				Relation.increase_own_value(current_id)
+				Relation.increase_relation(current_id, previous_id)
+				
+				next_sound = Relation.get_previous_sound(current_id)
+				previous_id = current_id
+		except:
+			pass
+
+		redirect('/player', dict(
+			id=next_sound,
+			previous_id=previous_id))
 
 	@expose()
-	def stop_button(self, current_time_stop, current_id, previous_sound):
+	def stop_button(self, current_time_stop, current_id, previous_id):
 		try:
 			if int(current_time_stop) > 61:
 				Relation.increase_own_value(current_id)
@@ -52,4 +91,4 @@ class PlayerController(BaseController):
 			pass
 		redirect('/player' , dict(
 			id=current_id,
-			previous_sound=previous_sound))
+			previous_id=previous_id))
