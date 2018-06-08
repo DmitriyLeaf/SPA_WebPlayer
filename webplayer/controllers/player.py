@@ -3,7 +3,7 @@
 
 from tg import expose, redirect, validate, flash, url, tmpl_context
 # from tg.i18n import ugettext as _
-from tg import predicates
+from tg import predicates, url
 
 from webplayer.lib.base import BaseController
 from webplayer.model import DBSession
@@ -40,11 +40,11 @@ class PlayerController(BaseController):
 				Relation.reduce_relation(previous_id, current_id)
 				
 				next_sound = Relation.get_next_sound(previous_id)
-			elif int(current_time_next) >= 38 and int(current_time_next) <=61:
+			elif int(current_time_next) >= 38 and int(current_time_next) < 61:
 
 				next_sound = Relation.get_next_sound(current_id)
 				previous_id = current_id
-			elif int(current_time_next) > 61:
+			elif int(current_time_next) >= 61:
 				Relation.increase_own_value(current_id)
 				Relation.increase_relation(previous_id, current_id)
 				
@@ -66,10 +66,10 @@ class PlayerController(BaseController):
 				Relation.reduce_relation(current_id, previous_id)
 				
 				next_sound = Relation.get_previous_sound(previous_id)
-			elif int(current_time_pre) >= 38 and int(current_time_pre) <=61:
+			elif int(current_time_pre) >= 38 and int(current_time_pre) < 61:
 				next_sound = Relation.get_previous_sound(current_id)
 				previous_id = current_id
-			elif int(current_time_pre) > 61:
+			elif int(current_time_pre) >= 61:
 				Relation.increase_own_value(current_id)
 				Relation.increase_relation(current_id, previous_id)
 				

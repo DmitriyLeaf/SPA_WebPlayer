@@ -6,6 +6,7 @@ from sqlalchemy.types import Integer, Unicode, DateTime, LargeBinary
 from sqlalchemy.orm import relationship, backref
 
 from webplayer.model import DeclarativeBase, metadata, DBSession
+from webplayer.model.sound import Sound
 
 import random, math
 
@@ -85,21 +86,23 @@ class Relation(DeclarativeBase):
 
     @classmethod
     def get_next_sound(cls, soung_id):
-        fibonacci = [1, 1, 2, 3, 5, 8]
+        sounds = DBSession.query(Sound).all()
+        next_sound = random.randint(1, len(sounds))
+        #fibonacci = [1, 1, 2, 3, 5, 8]
         
-        relations = DBSession.query(cls).\
-            filter(cls.left_sound_id==soung_id).\
-            filter(cls.left_sound_id!=cls.right_sound_id).\
-            all()
-
+        #relations = DBSession.query(cls).\
+        #    filter(cls.left_sound_id==soung_id).\
+        #    filter(cls.left_sound_id!=cls.right_sound_id).\
+        #    all()
         
-
-        return relations
+        return next_sound
 
     @classmethod
     def get_previous_sound(cls, soung_id):
-        fibonacci = [1, 1, 2, 3, 5, 8]
+        #fibonacci = [1, 1, 2, 3, 5, 8]
+        sounds = DBSession.query(Sound).all()
+        next_sound = random.randint(1, len(sounds))
 
-        return 1
+        return next_sound
 
 __all__ = ['Relation']

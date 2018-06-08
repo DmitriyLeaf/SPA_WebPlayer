@@ -9,6 +9,7 @@ from webplayer.model import DeclarativeBase, metadata, DBSession
 
 from os import listdir
 import mutagen
+from mutagen import File
 import tg
 
 class Sound(DeclarativeBase):
@@ -20,6 +21,7 @@ class Sound(DeclarativeBase):
     album = Column(String(32), nullable=True) #TALB
     genre = Column(String(32), nullable=True) #TCON
     artist = Column(String(32), nullable=True) #TPE1
+    picture = Column(String(32), nullable=True) #APIC:
     data = Column(String(32), nullable=True)
 
     user_id = Column(Integer, ForeignKey('tg_user.user_id'), index=True)
@@ -57,7 +59,9 @@ class Sound(DeclarativeBase):
 
     @classmethod
     def upload_files(cls, directory):
-        directory = 'C:\\Users\\Leafmen\\Desktop\\python\\diploma\\webplayer\\webplayer\\public\\music' + directory
+        tree = 'C:\\Users\\Leafmen\\Desktop\\python\\diploma\\webplayer\\webplayer\\public'
+        directory = tree + '\\music' + directory
+        #files = listdir(tg.url('/music' + directory))
         files = listdir(directory)
 
         for file in files:
@@ -88,8 +92,16 @@ class Sound(DeclarativeBase):
                 sound['artist'] = str(meta['TPE1']).encode('utf8')
             except:
                 sound['artist'] = 'Null'
-            
+
             sound['data'] = str(file).encode('utf8')
+
+            try:
+                pic = meta.tags.getall("APIC")[0].data
+                with open(tree + '\\img\\%s.jpg' % sound['data'], 'wb') as img:
+                    img.write(pic)
+                sound['picture'] = '%s.jpg' % sound['data']
+            except:
+                sound['picture'] = 'Null'
 
             DBSession.add(Sound(
                 sound_name=sound['name'],
@@ -97,7 +109,8 @@ class Sound(DeclarativeBase):
                 album = sound['album'],
                 genre = sound['genre'],
                 artist = sound['artist'],
-                data = sound['data'], 
+                data = sound['data'],
+                picture = sound['picture'],
                 user_id=1))
 
     @classmethod
