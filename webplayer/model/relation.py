@@ -87,6 +87,7 @@ class Relation(DeclarativeBase):
     @classmethod
     def get_next_sound(cls, soung_id):
         sounds = DBSession.query(Sound).all()
+        random.seed()
         next_sound = random.randint(1, len(sounds))
         #fibonacci = [1, 1, 2, 3, 5, 8]
         
@@ -101,6 +102,7 @@ class Relation(DeclarativeBase):
     def get_previous_sound(cls, soung_id):
         #fibonacci = [1, 1, 2, 3, 5, 8]
         sounds = DBSession.query(Sound).all()
+        random.seed()
         next_sound = random.randint(1, len(sounds))
 
         return next_sound

@@ -12,13 +12,37 @@
       </div>
       <br/>
       <div class="row">
-        <a class="btn btn-info btn-sm active" href="${tg.url('date')}">${h.icon('sort')} <em>Sort by Date</em></a>
-        <br/><br/>
-        <a class="btn btn-info btn-sm active" href="${tg.url('album')}">${h.icon('sort')} <em>Sort by Album</em></a>
-        <br/><br/>
-        <a class="btn btn-info btn-sm active" href="${tg.url('genre')}">${h.icon('sort')} <em>Sort by Genre</em></a>
-        <br/><br/>
-        <a class="btn btn-info btn-sm active" href="${tg.url('artist')}">${h.icon('sort')} <em>Sort by Artist</em></a>
+        <p>Sort and see on site:</p>
+        <form method="POST" action="date" style="display: inline;">
+          <button type="submit" class="btn btn-info">${h.icon('sort')} Sort by Date</button>
+        </form>
+        <form method="POST" action="album" style="display: inline;">
+          <button type="submit" class="btn btn-info">${h.icon('sort')} Sort by Album</button>
+        </form>
+        <form method="POST" action="genre" style="display: inline;">
+          <button type="submit" class="btn btn-info">${h.icon('sort')} Sort by Genre</button>
+        </form>
+        <form method="POST" action="artist" style="display: inline;">
+          <button type="submit" class="btn btn-info">${h.icon('sort')} Sort by Artist</button>
+        </form>
+        <hr/>
+        <p>Sort into folders:</p>
+        <form method="POST" action="sort/into_folders" style="display: inline;">
+          <input type="hidden" name="tag" value="0"/>
+          <button type="submit" class="btn btn-success">${h.icon('sort')} Sort by Date</button>
+        </form>
+        <form method="POST" action="sort/into_folders" style="display: inline;">
+          <input type="hidden" name="tag" value="1"/>
+          <button type="submit" class="btn btn-success">${h.icon('sort')} Sort by Album</button>
+        </form>
+        <form method="POST" action="sort/into_folders" style="display: inline;">
+          <input type="hidden" name="tag" value="2"/>
+          <button type="submit" class="btn btn-success">${h.icon('sort')} Sort by Genre</button>
+        </form>
+        <form method="POST" action="sort/into_folders" style="display: inline;">
+          <input type="hidden" name="tag" value="3"/>
+          <button type="submit" class="btn btn-success">${h.icon('sort')} Sort by Artist</button>
+        </form>
       </div>
     </body>
 </html>

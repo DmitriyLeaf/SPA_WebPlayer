@@ -1,19 +1,15 @@
 #player{
-    border: solid;
-    border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     align-items: center;
-    display: inline-block;
-    background: #eee;
     /*vertical-align: top;
   	justify-content: center;
   	align-items: center;*/
 }
 
 #timeline{
-	width: 600px;
+	width: auto;
 	height: 10px;
 	background: silver;
 	margin-top: 20px;
@@ -29,7 +25,7 @@
 	background: black;
 }
 
-#audioplayer, #info{
+#audioplayer, #info, #picture{
 	margin-left: 20px;
 }
 
@@ -37,6 +33,16 @@
 	margin-top: 25px;
 }
 
-#previousForm, #pButton, #nextForm, #stopForm{
+#previousForm, #pButton, #nextForm, #stopForm, #info{
 	display: inline-block;
+}
+
+#info, #picture{
+	vertical-align: middle;
+}
+
+#picture{
+	width: 150px;
+	height: 150px;
+	margin-top: 20px;
 }

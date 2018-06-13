@@ -5,14 +5,14 @@
     </head>
 
     <body py:block="body" py:strip="True">
-      <div class="row">
+      <!--div class="row">
         <div class="col-md-12">
           <h2>Player</h2>
           <p>
             Simple HTML5 Player
           </p>
         </div>
-      </div>
+      </div-->
 
       <audio id="music" preload="none">
         <source src="${tg.url('/music/' + str(sound.data))}" />
@@ -21,6 +21,8 @@
 
       <div class="row">
         <div id="player">
+
+          <img id="picture" src="${tg.url('/img/' + str(sound.picture))}"/>
 
           <div id="info">
             <h4>${sound.sound_name}</h4>
@@ -64,13 +66,13 @@
       ${h.icon(<input type="hidden" id="icon2"/>)}-->
       <!--var id="icon"></var-->
       <!--div id="icon"></div-->
-      <br/>
+      <!--br/>
       <var id="playPercent"></var>
       <br/>
       <var id="current"></var>
       <br/>
       <var id="duration"></var>
-      <br/>
+      <br/-->
 
       <br />
       <!--p>Test player</p>

@@ -10,7 +10,7 @@ from webplayer.model import DeclarativeBase, metadata, DBSession
 from os import listdir
 import mutagen
 from mutagen import File
-import tg
+import tg, shutil, os
 
 class Sound(DeclarativeBase):
     __tablename__ = 'sounds'
@@ -30,13 +30,13 @@ class Sound(DeclarativeBase):
                                         cascade='all, delete-orphan'))
 
     def __repr__(self):
-    	return '<Sound: name=%s, data=%s>' % (
+        return '<Sound: name=%s, data=%s>' % (
     		repr(self.sound_id),
     		repr(self.data))
 
     @classmethod
     def get(cls, id):
-    	return DBSession.query(cls).filter_by(sound_id=id).first()
+        return DBSession.query(cls).filter_by(sound_id=id).first()
 
     #@classmethod
     #def get_url(cls, id):
@@ -164,5 +164,49 @@ class Sound(DeclarativeBase):
                 sorted_dict[sound.album] = [[sound.sound_name, sound.data]]
 
         return sorted_dict
+
+    @classmethod
+    def sort_into_folders(cls, tag):
+        if tag == 0:
+            music = cls.sort_by_date()
+            cls.paste_into_folders(music, 'date')
+        elif tag == 1:
+            music = cls.sort_by_album()
+            cls.paste_into_folders(music, 'album')
+        elif tag == 2:
+            music = cls.sort_by_genre()
+            cls.paste_into_folders(music, 'genre')
+        elif tag == 3:
+            music = cls.sort_by_artist()
+            cls.paste_into_folders(music, 'artist')
+
+    @classmethod
+    def paste_into_folders(cls, music, folder):
+        tree = 'C:\\Users\\Leafmen\\Desktop\\python\\diploma\\webplayer\\webplayer\\public'
+        #shutil.rmtree(tree + '\\sorted\\' + folder, ignore_errors=True)
+        
+        for tag in music:
+            ttag = cls.check_dir(tag)
+            for mus in music[tag]:
+                try:
+                    shutil.copy2(tree + '\\music\\' + mus[1], tree + '\\sorted\\' + folder + '\\' + ttag + '\\' + mus[1])
+                except:
+                     os.makedirs(tree + '\\sorted\\' + folder + '\\' + ttag)
+                     shutil.copy2(tree + '\\music\\' + mus[1], tree + '\\sorted\\' + folder + '\\' + ttag + '\\' + mus[1])
+        return 0
+
+    @classmethod
+    def check_dir(cls, tag):
+        tag = tag.replace(':', ' ')
+        tag = tag.replace('\\', ' ')
+        tag = tag.replace('/', ' ')
+        tag = tag.replace('?', ' ')
+        tag = tag.replace('*', ' ')
+        tag = tag.replace('"', ' ')
+        tag = tag.replace('>', ' ')
+        tag = tag.replace('<', ' ')
+        tag = tag.replace('|', ' ')
+        print tag
+        return tag
 
 __all__ = ['Sound']
