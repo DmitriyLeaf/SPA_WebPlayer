@@ -1,30 +1,30 @@
 <html py:extends="master.xhtml" py:strip="True">
     <head py:block="head" py:strip="True">
-        <title py:block="master_title">Artist</title>
-        <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/card.css')}" />
+        <title py:block="master_title">${tag}</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="${tg.url('/css/card.css')}"/>
     </head>
 
     <body py:block="body" py:strip="True">
       <div class="row">
         <div class="col-md-12">
-          <h2>Select a artist</h2>
+          <h2>Select a ${tag}</h2>
         </div>
       </div>
 
       <div class="row">
-        <div id="accordion" py:for="artist in keys">
+        <div id="accordion" py:for="group in keys">
           <div class="card">
-            <div class="card-header" id="heading${keys.index(artist)}">
+            <div class="card-header" id="heading${keys.index(group)}">
               <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse${keys.index(artist)}" aria-expanded="true" aria-controls="collapse${keys.index(artist)}">
-                  ${artist}
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse${keys.index(group)}" aria-expanded="true" aria-controls="collapse${keys.index(group)}">
+                  ${group}
                 </button>
               </h5>
             </div>
 
-            <div id="collapse${keys.index(artist)}" class="collapse" aria-labelledby="heading${keys.index(artist)}" data-parent="#accordion">
+            <div id="collapse${keys.index(group)}" class="collapse" aria-labelledby="heading${keys.index(group)}" data-parent="#accordion">
               <div class="card-body">
-                <div py:for="sound in sorted_dict[artist]">
+                <div py:for="sound in sorted_dict[group]">
                   <div>
                     <p>${sound[0]}</p>
                     <!--${'/music/' + str(sound[1])}-->
